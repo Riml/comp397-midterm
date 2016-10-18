@@ -17,6 +17,9 @@ var scenes;
         }
         Menu.prototype.start = function () {
             console.log("Menu Scene Started");
+            //add background
+            this._bg = new createjs.Bitmap(assets.getResult("BgMenu"));
+            this.addChild(this._bg);
             this._playBtn = new objects.Button("PlayBtn", config.Screen.CENTER_X, config.Screen.CENTER_Y + 150);
             this.addChild(this._playBtn);
             this._playBtn.on("click", this._playBtnClick, this);

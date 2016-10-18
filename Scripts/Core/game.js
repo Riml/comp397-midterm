@@ -7,7 +7,9 @@ var currentScene;
 var scene;
 // Preload Assets required
 var assetData = [
-    { id: "PlayBtn", src: "../../Assets/images/sack.png" }
+    { id: "PlayBtn", src: "../../Assets/images/sack.png" },
+    { id: "BgMenu", src: "../../Assets/images/bank1.png" },
+    { id: "BgPlay", src: "../../Assets/images/bank.png" },
 ];
 function preload() {
     // Create a queue for assets being loaded

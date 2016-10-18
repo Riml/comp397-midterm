@@ -7,7 +7,10 @@ module scenes {
     export class Menu extends objects.Scene {
 
         // Private instance variables
+
         // Label or bitmap
+         private _bg: createjs.Bitmap;
+
         // Button 
         private _playBtn : objects.Button;
         // Menu Class Contructor
@@ -18,6 +21,10 @@ module scenes {
         public start() : void {
             console.log("Menu Scene Started");
 
+            //add background
+            this._bg = new createjs.Bitmap(assets.getResult("BgMenu"));
+            this.addChild(this._bg);
+            
             this._playBtn = new objects.Button("PlayBtn", config.Screen.CENTER_X, config.Screen.CENTER_Y + 150);
             this.addChild(this._playBtn);
             this._playBtn.on("click", this._playBtnClick, this);

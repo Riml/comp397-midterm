@@ -1,3 +1,7 @@
+/*
+    Scene module to group all user-defined scenes  under the same "namespace aka module"
+    Menu scene that contains all assets and functionality associated with the menu itself
+*/
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
@@ -7,11 +11,16 @@ var scenes;
 (function (scenes) {
     var Play = (function (_super) {
         __extends(Play, _super);
+        // Play Class Contructor
         function Play() {
             _super.call(this);
             this.start();
         }
         Play.prototype.start = function () {
+            console.log("Play Scene Started");
+            //add background
+            this._bg = new createjs.Bitmap(assets.getResult("BgPlay"));
+            this.addChild(this._bg);
             stage.addChild(this);
         };
         Play.prototype.update = function () {
