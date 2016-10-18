@@ -23,6 +23,10 @@ module scenes {
 
             //add background
             this._bg = new createjs.Bitmap(assets.getResult("BgMenu"));
+            this._bg.filters = [
+                new createjs.BlurFilter(5, 5, 5)
+            ];
+            this._bg.cache(0,0,800,600);
             this.addChild(this._bg);
             
             this._playBtn = new objects.Button("PlayBtn", config.Screen.CENTER_X, config.Screen.CENTER_Y + 150);
