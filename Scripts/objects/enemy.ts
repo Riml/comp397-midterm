@@ -13,7 +13,7 @@ module objects {
         public center:objects.Vector2;
 
         constructor(imageString:string, life : number) {
-            super(enemyAtlas, imageString, "");
+            super(gameAtlas, imageString, "");
             this._life = life;
         }
 
@@ -22,6 +22,13 @@ module objects {
         }
 
         public update() : void {
+            if (this._life<=0)
+            {
+                //play poof animation
+                this._dead();
+
+            }
+
         }
 
         public setPosition(pos : objects.Vector2) : void {
@@ -38,6 +45,7 @@ module objects {
         }
 
         private _dead() : void {
+            spawnEnemy=true;
             currentScene.removeChild(this);
         }
     }

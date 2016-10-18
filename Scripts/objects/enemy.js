@@ -8,7 +8,7 @@ var objects;
     var Enemy = (function (_super) {
         __extends(Enemy, _super);
         function Enemy(imageString, life) {
-            _super.call(this, enemyAtlas, imageString, "");
+            _super.call(this, gameAtlas, imageString, "");
             this._life = life;
         }
         Object.defineProperty(Enemy.prototype, "life", {
@@ -19,6 +19,10 @@ var objects;
             configurable: true
         });
         Enemy.prototype.update = function () {
+            if (this._life <= 0) {
+                //play poof animation
+                this._dead();
+            }
         };
         Enemy.prototype.setPosition = function (pos) {
             this.x = pos.x;
@@ -31,6 +35,7 @@ var objects;
             this._life--;
         };
         Enemy.prototype._dead = function () {
+            spawnEnemy = true;
             currentScene.removeChild(this);
         };
         return Enemy;

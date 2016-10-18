@@ -38,7 +38,7 @@ module objects {
             this._position = p;
         }
 
-        constructor(atlas: createjs.SpriteSheet, imageString : string, deathAnimString) {
+        constructor(atlas: createjs.SpriteSheet, imageString : string, deathAnimString : string) {
             super(atlas, imageString);
 
             this._initialize(imageString);
