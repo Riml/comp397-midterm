@@ -3,6 +3,8 @@ module objects {
 
         private _move : objects.Vector2;
         private _speed : number;
+        private _deathAnimationName:string;
+        private _dying:boolean;
 
         private _life : number;
 
@@ -12,9 +14,11 @@ module objects {
         public height:number;
         public center:objects.Vector2;
 
-        constructor(imageString:string, life : number) {
+        constructor(imageString:string, life : number, deathAnimationName:string) {
             super(gameAtlas, imageString, "");
+            this._deathAnimationName=deathAnimationName;
             this._life = life;
+            this._dying=false;
         }
 
         get life() : number {
@@ -22,12 +26,20 @@ module objects {
         }
 
         public update() : void {
-            if (this._life<=0)
+            if (this._life<=0 && !this._dying)
             {
                 console.log("die? please!");
-                //play poof animation
-                this._dead();
+                this._dying=true;
+                this.gotoAndPlay(this._deathAnimationName);
+               
 
+
+            }
+
+             if (this.currentAnimation ==this._deathAnimationName &&
+                 this.currentAnimationFrame > gameAtlas.getNumFrames(this._deathAnimationName) - 1
+                 ) {
+                this._dead();
             }
 
         }

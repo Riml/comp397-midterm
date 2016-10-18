@@ -46,7 +46,7 @@ function init() {
         ],
         "animations": {
             "robber": { "frames": [0] },
-            "poof": { "frames": [4, 1, 5, 2, 3] },
+            "poof": { "frames": [4, 1, 5, 2, 3], "speed": 0.3, next: false },
             "poof2": { "frames": [1] },
             "poof4": { "frames": [2] },
             "poof5": { "frames": [3] },

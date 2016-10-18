@@ -7,9 +7,11 @@ var objects;
 (function (objects) {
     var Enemy = (function (_super) {
         __extends(Enemy, _super);
-        function Enemy(imageString, life) {
+        function Enemy(imageString, life, deathAnimationName) {
             _super.call(this, gameAtlas, imageString, "");
+            this._deathAnimationName = deathAnimationName;
             this._life = life;
+            this._dying = false;
         }
         Object.defineProperty(Enemy.prototype, "life", {
             get: function () {
@@ -19,9 +21,13 @@ var objects;
             configurable: true
         });
         Enemy.prototype.update = function () {
-            if (this._life <= 0) {
+            if (this._life <= 0 && !this._dying) {
                 console.log("die? please!");
-                //play poof animation
+                this._dying = true;
+                this.gotoAndPlay(this._deathAnimationName);
+            }
+            if (this.currentAnimation == this._deathAnimationName &&
+                this.currentAnimationFrame > gameAtlas.getNumFrames(this._deathAnimationName) - 1) {
                 this._dead();
             }
         };
