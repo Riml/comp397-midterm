@@ -9,13 +9,15 @@ module scenes {
 
         // Private instance variables
         private _enemy: objects.Enemy;
-        
+        private _newCursor:createjs.Bitmap;
+        private _enemyHealth : createjs.Shape;
+      
        
 
 
         // Labels and bitmaps
          private _bg: createjs.Bitmap;
-         private _newCursor: createjs.Bitmap;
+         //private _newCursor: createjs.Bitmap;
          private _scoreTxt: createjs.Text;
 
         // Play Class Contructor
@@ -26,7 +28,7 @@ module scenes {
 
         public start() : void {
             console.log("Play Scene Started");
-
+           
             //add background
             this._bg = new createjs.Bitmap(assets.getResult("BgPlay"));
             this.addChild(this._bg);
@@ -39,15 +41,24 @@ module scenes {
 
             //allow enemy to spawn
             spawnEnemy=true;
-            //bye-bye cursor
+            //add enemy health bar
+            this._enemyHealth = new createjs.Shape();
+            this._enemyHealth.graphics.beginFill("#ffffff").drawRect(0,10,100,30);
+            this._enemyHealth.x=config.Screen.WIDTH-120;
+             this.addChild(this._enemyHealth);
+            
+            /* Z indexing are really bad here.... 
             stage.cursor = 'none';
-            //and welcome new one
+           
             this._newCursor = new createjs.Bitmap(assets.getResult("newCursor"));
             var width = this._newCursor.getBounds().width;
             var height = this._newCursor.getBounds().height;
             this._newCursor.regX = width * 0.5;
             this._newCursor.regY = height * 0.5;
             this.addChild(this._newCursor);
+            
+            this.setChildIndex(this._newCursor,1000);
+            */
 
 
 
@@ -58,11 +69,12 @@ module scenes {
         public update() : void {
 
             this._scoreTxt.text="Score : "+ score;
-            this._newCursor.x = stage.mouseX;    
-            this._newCursor.y = stage.mouseY;
+            //this._newCursor.x = stage.mouseX;    
+            //this._newCursor.y = stage.mouseY;
+           
 
             if(spawnEnemy==true){
-                console.log("z1:"+(stage.numChildren-1));
+              
                 spawnEnemy=false;
                 this._enemy = new objects.Enemy("robber",Math.round(4.99*Math.random())+1,"poof");
                 //set center of enemy position within screen with 20%margins 
@@ -74,16 +86,21 @@ module scenes {
                 currentEnemy=this._enemy;
                 this._enemy.addEventListener("click", this._onEnemyClick);
                 this.addChild(this._enemy);
-                //dirty trick to ensure that mouse always on the top of enemy
-                console.log("z2:"+(stage.numChildren-1));
-                stage.setChildIndex(this._newCursor, stage.numChildren);
+                
+                
                 
                 
             }
+
+            if(currentEnemy.life>=0)
+                this._enemyHealth.scaleX=currentEnemy.life/5;
+                
             this._enemy.update();
             
            
         }
+
+        
 
         private _onEnemyClick(event : createjs.MouseEvent) : void {
                 console.log("Click me more!");
