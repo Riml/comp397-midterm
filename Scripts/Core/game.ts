@@ -6,6 +6,7 @@ var canvas: HTMLElement;
 var stage: createjs.Stage;
 var score:number;
 var spawnEnemy:boolean;
+var currentEnemy:objects.Enemy;
 
 var gameAtlas : createjs.SpriteSheet;
 

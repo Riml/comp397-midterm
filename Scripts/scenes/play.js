@@ -31,6 +31,10 @@ var scenes;
             stage.cursor = 'none';
             //and welcome new one
             this._newCursor = new createjs.Bitmap(assets.getResult("newCursor"));
+            var width = this._newCursor.getBounds().width;
+            var height = this._newCursor.getBounds().height;
+            this._newCursor.regX = width * 0.5;
+            this._newCursor.regY = height * 0.5;
             this.addChild(this._newCursor);
             stage.addChild(this);
         };
@@ -44,13 +48,18 @@ var scenes;
                 this._enemy = new objects.Enemy("robber", Math.round(4.99 * Math.random()) + 1);
                 //set center of enemy position within screen with 20%margins 
                 this._enemy.setPosition(new objects.Vector2(config.Screen.WIDTH * 0.6 * Math.random() + config.Screen.WIDTH * 0.2, config.Screen.HEIGHT * 0.6 * Math.random() + config.Screen.HEIGHT * 0.2));
+                currentEnemy = this._enemy;
+                this._enemy.addEventListener("click", this._onEnemyClick);
                 this.addChild(this._enemy);
                 //dirty trick to ensure that mouse always on the top of enemy
                 console.log("z2:" + (stage.numChildren - 1));
                 stage.setChildIndex(this._newCursor, stage.numChildren);
             }
+            this._enemy.update();
         };
         Play.prototype._onEnemyClick = function (event) {
+            console.log("Click me more!");
+            currentEnemy.shot();
         };
         return Play;
     }(objects.Scene));

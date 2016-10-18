@@ -24,6 +24,7 @@ module objects {
         public update() : void {
             if (this._life<=0)
             {
+                console.log("die? please!");
                 //play poof animation
                 this._dead();
 
@@ -41,6 +42,7 @@ module objects {
         }
 
         public shot() : void {
+            console.log("robber lifes : "+this.life);
             this._life--;
         }
 

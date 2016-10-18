@@ -5,6 +5,7 @@ var canvas;
 var stage;
 var score;
 var spawnEnemy;
+var currentEnemy;
 var gameAtlas;
 var currentScene;
 var scene;

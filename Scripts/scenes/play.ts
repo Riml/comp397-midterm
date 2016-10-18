@@ -41,6 +41,10 @@ module scenes {
             stage.cursor = 'none';
             //and welcome new one
             this._newCursor = new createjs.Bitmap(assets.getResult("newCursor"));
+            var width = this._newCursor.getBounds().width;
+            var height = this._newCursor.getBounds().height;
+            this._newCursor.regX = width * 0.5;
+            this._newCursor.regY = height * 0.5;
             this.addChild(this._newCursor);
 
 
@@ -65,6 +69,8 @@ module scenes {
                         config.Screen.WIDTH*0.6*Math.random() + config.Screen.WIDTH*0.2,
                         config.Screen.HEIGHT*0.6*Math.random() + config.Screen.HEIGHT*0.2,)
                 );
+                currentEnemy=this._enemy;
+                this._enemy.addEventListener("click", this._onEnemyClick);
                 this.addChild(this._enemy);
                 //dirty trick to ensure that mouse always on the top of enemy
                 console.log("z2:"+(stage.numChildren-1));
@@ -72,11 +78,15 @@ module scenes {
                 
                 
             }
+            this._enemy.update();
             
            
         }
 
         private _onEnemyClick(event : createjs.MouseEvent) : void {
+                console.log("Click me more!");
+                currentEnemy.shot();
+
         }
     }
 }

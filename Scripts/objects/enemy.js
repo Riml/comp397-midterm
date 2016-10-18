@@ -20,6 +20,7 @@ var objects;
         });
         Enemy.prototype.update = function () {
             if (this._life <= 0) {
+                console.log("die? please!");
                 //play poof animation
                 this._dead();
             }
@@ -32,6 +33,7 @@ var objects;
             return new objects.Vector2(this.x, this.y);
         };
         Enemy.prototype.shot = function () {
+            console.log("robber lifes : " + this.life);
             this._life--;
         };
         Enemy.prototype._dead = function () {
