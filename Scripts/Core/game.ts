@@ -1,3 +1,11 @@
+/*
+*Created by: Ilmir Taychinov
+*Created on: October 18, 2016
+*Last Modified by: Ilmir Taychinov
+*Last Modified: October 18, 2016
+*Based on work of: Wallace Balaniuc
+*/
+
 /// <reference path = "_reference.ts" />
 
 // Global Variables

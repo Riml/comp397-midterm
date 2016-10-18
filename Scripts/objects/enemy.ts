@@ -26,14 +26,13 @@ module objects {
         }
 
         public update() : void {
+
+            //check if we alredy kill the robber
             if (this._life<=0 && !this._dying)
             {
                 console.log("die? please!");
                 this._dying=true;
                 this.gotoAndPlay(this._deathAnimationName);
-               
-
-
             }
 
              if (this.currentAnimation ==this._deathAnimationName &&

@@ -21,6 +21,7 @@ var objects;
             configurable: true
         });
         Enemy.prototype.update = function () {
+            //check if we alredy kill the robber
             if (this._life <= 0 && !this._dying) {
                 console.log("die? please!");
                 this._dying = true;

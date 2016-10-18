@@ -1,12 +1,19 @@
 /*
-    Scene module to group all user-defined scenes  under the same "namespace aka module"
-    Menu scene that contains all assets and functionality associated with the menu itself
+*Created by: Ilmir Taychinov
+*Created on: October 18, 2016
+*Last Modified by: Ilmir Taychinov
+*Last Modified: October 18, 2016
+*Based on work of: Wallace Balaniuc
 */
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
+/*
+    Scene module to group all user-defined scenes  under the same "namespace aka module"
+    Menu scene that contains all assets and functionality associated with the menu itself
+*/
 var scenes;
 (function (scenes) {
     var Play = (function (_super) {
@@ -36,14 +43,12 @@ var scenes;
             this.addChild(this._enemyHealth);
             /* Z indexing are really bad here....
             stage.cursor = 'none';
-           
             this._newCursor = new createjs.Bitmap(assets.getResult("newCursor"));
             var width = this._newCursor.getBounds().width;
             var height = this._newCursor.getBounds().height;
             this._newCursor.regX = width * 0.5;
             this._newCursor.regY = height * 0.5;
             this.addChild(this._newCursor);
-            
             this.setChildIndex(this._newCursor,1000);
             */
             stage.addChild(this);
@@ -52,15 +57,19 @@ var scenes;
             this._scoreTxt.text = "Score : " + score;
             //this._newCursor.x = stage.mouseX;    
             //this._newCursor.y = stage.mouseY;
+            //spawner change to true when enemy dies from enemy object
             if (spawnEnemy == true) {
                 spawnEnemy = false;
                 this._enemy = new objects.Enemy("robber", Math.round(4.99 * Math.random()) + 1, "poof");
-                //set center of enemy position within screen with 20%margins 
+                //set enemy position within screen with 20% margins on the sides
                 this._enemy.setPosition(new objects.Vector2(config.Screen.WIDTH * 0.6 * Math.random() + config.Screen.WIDTH * 0.2, config.Screen.HEIGHT * 0.6 * Math.random() + config.Screen.HEIGHT * 0.2));
+                //add refernce to current enemy at the stage
                 currentEnemy = this._enemy;
+                //make it clickalble
                 this._enemy.addEventListener("click", this._onEnemyClick);
                 this.addChild(this._enemy);
             }
+            //enemy healt bar update (can go to negative values if clicking tooo fast)
             if (currentEnemy.life >= 0)
                 this._enemyHealth.scaleX = currentEnemy.life / 5;
             this._enemy.update();

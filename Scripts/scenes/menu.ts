@@ -1,4 +1,12 @@
 /*
+*Created by: Ilmir Taychinov
+*Created on: October 18, 2016
+*Last Modified by: Ilmir Taychinov
+*Last Modified: October 18, 2016
+*Based on work of: Wallace Balaniuc
+*/
+
+/*
     Scene module to group all user-defined scenes  under the same "namespace aka module"
     Menu scene that contains all assets and functionality associated with the menu itself
 */
