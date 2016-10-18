@@ -32,17 +32,19 @@ function init() {
     stage.enableMouseOver(20);
     createjs.Ticker.setFPS(config.Game.FPS);
     createjs.Ticker.on("tick", this.gameLoop, this);
+    var poofX = -30;
+    var poofY = -30;
     var atlasData = {
         "images": [
             assets.getResult("gameAtlas")
         ],
         "frames": [
             [1, 1, 200, 214, 0, 0, 0],
-            [203, 1, 128, 125, 0, 0, -3],
-            [203, 128, 102, 117, 0, -13, -9],
-            [307, 128, 91, 98, 0, -18, -18],
-            [400, 1, 128, 124, 0, 0, -4],
-            [400, 127, 128, 124, 0, 0, -4]
+            [203, 1, 128, 125, 0, poofX, poofY - 3],
+            [203, 128, 102, 117, 0, poofX - 13, poofY - 9],
+            [307, 128, 91, 98, 0, poofX - 18, poofY - 18],
+            [400, 1, 128, 124, 0, poofX, poofY - 4],
+            [400, 127, 128, 124, 0, poofX, poofY - 4]
         ],
         "animations": {
             "robber": { "frames": [0] },

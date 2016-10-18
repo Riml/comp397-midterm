@@ -60,6 +60,7 @@ module objects {
 
         private _dead() : void {
             spawnEnemy=true;
+            score+=5;
             currentScene.removeChild(this);
         }
     }

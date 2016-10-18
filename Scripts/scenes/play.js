@@ -22,9 +22,11 @@ var scenes;
             this._bg = new createjs.Bitmap(assets.getResult("BgPlay"));
             this.addChild(this._bg);
             //add score label
-            this._scoreTxt = new createjs.Text("Score " + score, "30px Verdana", "#ffFFff");
+            score = 0;
+            this._scoreTxt = new createjs.Text("Score " + score, "30px Stencil", "#ffFFff");
             this._scoreTxt.x = 10;
             this._scoreTxt.y = 10;
+            this.addChild(this._scoreTxt);
             //allow enemy to spawn
             spawnEnemy = true;
             //bye-bye cursor

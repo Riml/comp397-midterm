@@ -44,6 +44,7 @@ var objects;
         };
         Enemy.prototype._dead = function () {
             spawnEnemy = true;
+            score += 5;
             currentScene.removeChild(this);
         };
         return Enemy;
