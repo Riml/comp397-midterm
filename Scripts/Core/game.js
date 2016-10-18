@@ -14,6 +14,7 @@ var assetData = [
     { id: "BgMenu", src: "../../Assets/images/bank1.png" },
     { id: "BgPlay", src: "../../Assets/images/bank.png" },
     { id: "gameAtlas", src: "../../Assets/images/enemy.png" },
+    { id: "newCursor", src: "../../Assets/images/crosshair.png" }
 ];
 function preload() {
     // Create a queue for assets being loaded

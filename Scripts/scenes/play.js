@@ -27,16 +27,27 @@ var scenes;
             this._scoreTxt.y = 10;
             //allow enemy to spawn
             spawnEnemy = true;
+            //bye-bye cursor
+            stage.cursor = 'none';
+            //and welcome new one
+            this._newCursor = new createjs.Bitmap(assets.getResult("newCursor"));
+            this.addChild(this._newCursor);
             stage.addChild(this);
         };
         Play.prototype.update = function () {
             this._scoreTxt.text = "Score : " + score;
+            this._newCursor.x = stage.mouseX;
+            this._newCursor.y = stage.mouseY;
             if (spawnEnemy == true) {
+                console.log("z1:" + (stage.numChildren - 1));
                 spawnEnemy = false;
                 this._enemy = new objects.Enemy("robber", Math.round(4.99 * Math.random()) + 1);
                 //set center of enemy position within screen with 20%margins 
                 this._enemy.setPosition(new objects.Vector2(config.Screen.WIDTH * 0.6 * Math.random() + config.Screen.WIDTH * 0.2, config.Screen.HEIGHT * 0.6 * Math.random() + config.Screen.HEIGHT * 0.2));
                 this.addChild(this._enemy);
+                //dirty trick to ensure that mouse always on the top of enemy
+                console.log("z2:" + (stage.numChildren - 1));
+                stage.setChildIndex(this._newCursor, stage.numChildren);
             }
         };
         Play.prototype._onEnemyClick = function (event) {
