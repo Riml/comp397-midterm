@@ -34,6 +34,8 @@ var scenes;
             if (spawnEnemy == true) {
                 spawnEnemy = false;
                 this._enemy = new objects.Enemy("robber", Math.round(4.99 * Math.random()) + 1);
+                //set center of enemy position within screen with 20%margins 
+                this._enemy.setPosition(new objects.Vector2(config.Screen.WIDTH * 0.6 * Math.random() + config.Screen.WIDTH * 0.2, config.Screen.HEIGHT * 0.6 * Math.random() + config.Screen.HEIGHT * 0.2));
                 this.addChild(this._enemy);
             }
         };
